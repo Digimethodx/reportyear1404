@@ -2,476 +2,880 @@
 <html lang="fa" dir="rtl">
 <head>
   <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>گزارش ماهانه مرکز تماس زودکس — آذر ۱۴۰۴</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>گزارش سالانه مرکز تماس زودکس — ۱۴۰۴</title>
 
-  <!-- Font -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
 
   <style>
-    :root {
-      --bg: #0b1020;
-      --panel: rgba(255,255,255,.06);
-      --panel2: rgba(255,255,255,.045);
-      --border: rgba(255,255,255,.10);
-      --border2: rgba(255,255,255,.14);
+    :root{
+      --bg0:#070a12;
+      --bg1:#091a22;
+
+      --glass: rgba(255,255,255,.085);
+      --stroke: rgba(255,255,255,.14);
+
       --text: rgba(255,255,255,.92);
-      --muted: rgba(255,255,255,.62);
-      --accent: #7dd3fc;
-      --accent2: #a7f3d0;
-      --warn: #fbbf24;
-      --bad: #fb7185;
-      --good: #34d399;
-      --shadow: 0 18px 45px rgba(0,0,0,.35);
-      --r: 18px;
+      --title: rgba(255,255,255,.98);
+      --muted: rgba(255,255,255,.65);
+
+      --good:#7CFFB2;
+      --blue:#66A6FF;
+      --warn:#FFD166;
+      --bad:#FF6B6B;
+
+      --shadow: 0 26px 70px rgba(0,0,0,.55);
+      --radius: 22px;
     }
 
-    * { box-sizing: border-box; }
-    html, body { height: 100%; }
-    body {
-      margin: 0;
-      font-family: "Vazirmatn", system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
-      background: radial-gradient(1200px 600px at 15% 25%, rgba(16,185,129,.25), transparent 60%),
-                  radial-gradient(900px 500px at 85% 10%, rgba(59,130,246,.28), transparent 55%),
-                  radial-gradient(700px 500px at 70% 85%, rgba(236,72,153,.20), transparent 55%),
-                  var(--bg);
-      color: var(--text);
+    *{box-sizing:border-box}
+    html,body{height:100%;margin:0}
+    body{
+      background:
+        radial-gradient(1200px 800px at 18% 10%, rgba(11,58,56,.95) 0%, transparent 55%),
+        radial-gradient(900px 700px at 85% 10%, rgba(26,34,88,.95) 0%, transparent 55%),
+        linear-gradient(160deg, var(--bg1), var(--bg0));
+      color:var(--text);
+      font-family: Tahoma, Arial, sans-serif;
+      -webkit-font-smoothing: antialiased;
+      text-rendering: geometricPrecision;
     }
 
-    .container { max-width: 1180px; margin: 24px auto 40px; padding: 0 16px; }
-    .header {
-      background: linear-gradient(180deg, rgba(255,255,255,.07), rgba(255,255,255,.045));
-      border: 1px solid var(--border);
-      border-radius: calc(var(--r) + 6px);
-      padding: 20px 18px 16px;
-      box-shadow: var(--shadow);
-      text-align: center;
-    }
-    .title { margin: 0; font-size: 22px; font-weight: 800; letter-spacing: .2px; }
-    .subtitle { margin: 8px 0 0; color: var(--muted); font-size: 13px; line-height: 1.8; }
+    .wrap{max-width:1200px;margin:0 auto;padding:26px 18px 70px}
 
-    .chips { display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; margin-top: 10px; }
-    .chip {
-      font-size: 12px; color: var(--muted);
-      border: 1px solid var(--border);
+    .hero{
+      border:1px solid var(--stroke);
+      background: linear-gradient(135deg, rgba(255,255,255,.10), rgba(255,255,255,.05));
+      border-radius:var(--radius);
+      box-shadow:var(--shadow);
+      padding:26px 26px 18px;
+      position:relative;
+      overflow:hidden;
+    }
+    .hero:before{
+      content:"";
+      position:absolute; inset:-2px;
+      background:
+        radial-gradient(720px 260px at 15% 0%, rgba(124,255,178,.22), transparent 60%),
+        radial-gradient(720px 260px at 85% 0%, rgba(102,166,255,.26), transparent 60%);
+      pointer-events:none;
+    }
+    .hero h1{margin:0;font-size:22px;font-weight:900;color:var(--title);position:relative}
+    .subtitle{margin-top:8px;color:var(--muted);font-size:13px;line-height:1.95;position:relative}
+    .subtitle b{color:rgba(255,255,255,.93)}
+
+    .grid{
+      display:grid;
+      grid-template-columns: repeat(12, 1fr);
+      gap:14px;
+      margin-top:16px;
+    }
+    .span-4{grid-column:span 4}
+    .span-6{grid-column:span 6}
+    .span-8{grid-column:span 8}
+    .span-12{grid-column:span 12}
+    @media (max-width:1000px){
+      .span-4,.span-6,.span-8{grid-column:span 12}
+    }
+
+    .card{
+      border:1px solid var(--stroke);
+      background: linear-gradient(135deg, rgba(255,255,255,.10), rgba(255,255,255,.05));
+      border-radius:var(--radius);
+      box-shadow: 0 14px 40px rgba(0,0,0,.35);
+      padding:16px 16px 14px;
+      overflow:hidden;
+    }
+
+    .card h3{
+      margin:0 0 8px 0;
+      font-size:13px;
+      font-weight:900;
+      color:rgba(255,255,255,.93);
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:10px;
+    }
+
+    .section-title{
+      margin:22px 6px 10px;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:10px;
+    }
+    .section-title h2{margin:0;font-size:15px;font-weight:900;color:var(--title)}
+    .section-title .note{font-size:12px;color:var(--muted)}
+
+    .kpi{font-size:34px;font-weight:900;color:var(--title)}
+    .kpi small{font-size:13px;color:var(--muted);font-weight:800}
+    .meta{margin-top:10px;color:var(--muted);font-size:12px;line-height:1.9}
+    .meta b{color:rgba(255,255,255,.95)}
+
+    .pill{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      padding:4px 10px;
+      border-radius:999px;
+      border:1px solid rgba(255,255,255,.18);
+      background: rgba(255,255,255,.08);
+      font-weight:900;
+      font-size:11px;
+      line-height:1;
+      white-space:nowrap;
+      box-shadow: inset 0 1px 0 rgba(255,255,255,.10);
+      color: rgba(255,255,255,.96);
+    }
+    .pill.good{ background: rgba(124,255,178,.18); border-color: rgba(124,255,178,.32); }
+    .pill.mid { background: rgba(255,209,102,.18); border-color: rgba(255,209,102,.32); }
+    .pill.bad { background: rgba(255,107,107,.18); border-color: rgba(255,107,107,.32); }
+
+    .chart-card{ padding: 14px 16px 10px; }
+    canvas{ width:100% !important; height:310px !important; }
+
+    .table-wrap{
+      overflow:auto;
+      border-radius: var(--radius);
+      border: 1px solid var(--stroke);
+      background: rgba(255,255,255,.04);
+    }
+    table{width:100%;border-collapse:collapse;min-width:980px}
+    th,td{
+      padding:10px 10px;
+      border-bottom:1px solid rgba(255,255,255,.08);
+      text-align:center;
+      font-size:12px;
+      white-space:nowrap;
+      color: rgba(255,255,255,.88);
+    }
+    th{
+      position:sticky; top:0;
+      background: rgba(10,16,26,.90);
+      backdrop-filter: blur(10px);
+      color: rgba(255,255,255,.90);
+      font-weight:900;
+      z-index:2;
+    }
+
+    .phase-title{
+      display:flex; align-items:center; justify-content:space-between;
+      margin-bottom:10px;
+      font-weight:900;
+      color: rgba(255,255,255,.95);
+    }
+    .phase-title .tag{
+      font-size:11px;
+      border:1px solid rgba(255,255,255,.16);
+      background: rgba(255,255,255,.08);
+      padding:4px 10px;
+      border-radius:999px;
+      color: rgba(255,255,255,.92);
+    }
+
+    .bars{
+      margin-top: 12px;
+      display:grid;
+      grid-template-columns: 1fr;
+      gap:10px;
+    }
+    .bar-row{
+      display:grid;
+      grid-template-columns: 80px 1fr 110px;
+      gap:10px;
+      align-items:center;
+    }
+    .bar-num{font-weight:900;color:rgba(255,255,255,.95);text-align:left}
+    .bar-label{font-weight:900;color:rgba(255,255,255,.90);text-align:right}
+    .bar-track{
+      height: 12px;
+      border-radius: 999px;
+      border: 1px solid rgba(255,255,255,.18);
+      background: rgba(255,255,255,.06);
+      overflow:hidden;
+      position:relative;
+    }
+    .bar-fill{
+      height:100%;
+      border-radius:999px;
+      background: linear-gradient(90deg, rgba(102,166,255,.95), rgba(124,255,178,.90));
+      width: 0%;
+    }
+
+    .ticket-grid{
+      display:grid;
+      grid-template-columns: repeat(12, 1fr);
+      gap:14px;
+    }
+    .ticket-block{
+      grid-column: span 6;
+      border:1px solid var(--stroke);
+      background: linear-gradient(135deg, rgba(255,255,255,.10), rgba(255,255,255,.05));
+      border-radius: var(--radius);
+      padding: 16px;
+      box-shadow: 0 14px 40px rgba(0,0,0,.35);
+    }
+    @media(max-width:1000px){ .ticket-block{grid-column: span 12;} }
+
+    .ticket-head{
+      display:flex; align-items:center; justify-content:space-between; gap:10px;
+      margin-bottom: 10px;
+    }
+    .ticket-head .tname{font-weight:900;color:rgba(255,255,255,.96);font-size:13px}
+    .ticket-head .tsum{color:rgba(255,255,255,.78);font-weight:900;font-size:12px}
+
+    .ticket-cards{
+      display:grid;
+      grid-template-columns: repeat(12, 1fr);
+      gap:12px;
+      margin-top:10px;
+    }
+    .tcard{
+      grid-column: span 4;
+      border:1px solid rgba(255,255,255,.14);
       background: rgba(255,255,255,.05);
-      padding: 6px 10px; border-radius: 999px;
+      border-radius: 18px;
+      padding: 12px;
+      min-height: 108px;
+    }
+    @media(max-width:1000px){ .tcard{grid-column: span 12;} }
+    .tcard .ttl{font-weight:900;color:rgba(255,255,255,.90);font-size:12px;margin-bottom:8px}
+    .tcard .val{font-size:26px;font-weight:900;color:rgba(255,255,255,.98);line-height:1}
+    .tcard .sub{margin-top:8px;color:rgba(255,255,255,.68);font-size:12px;line-height:1.9}
+
+    .footer{ text-align:center; margin-top: 22px; color: rgba(255,255,255,.58); font-size: 12px; }
+
+    /* ✅ Snapshot cards (like screenshot) */
+    .snap{
+      position:relative;
+      padding:18px 18px 14px;
+    }
+    .snap .badge{
+      position:absolute;
+      top:12px;
+      left:12px;
+      display:inline-flex;
+      align-items:center;
+      gap:6px;
+      padding:5px 10px;
+      border-radius:999px;
+      border:1px solid rgba(255,255,255,.18);
+      background: rgba(124,255,178,.14);
+      color: rgba(255,255,255,.95);
+      font-weight:900;
+      font-size:11px;
+      box-shadow: inset 0 1px 0 rgba(255,255,255,.10);
+    }
+    .snap .badge.down{
+      background: rgba(255,107,107,.14);
+    }
+    .snap .label{
+      color: rgba(255,255,255,.85);
+      font-weight:900;
+      font-size:13px;
+      margin-bottom:6px;
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+    }
+    .snap .value{
+      font-size:42px;
+      font-weight:900;
+      color: rgba(255,255,255,.98);
+      line-height:1;
+      margin-top:10px;
+    }
+    .snap .value small{
+      font-size:16px;
+      font-weight:900;
+      color: rgba(255,255,255,.82);
+    }
+    .snap .subline{
+      margin-top:10px;
+      color: rgba(255,255,255,.70);
+      font-size:12px;
+      line-height:1.9;
     }
 
-    /* mini delta chips (for exec trend cards) */
-    .chip.good{
-      color: rgba(200,255,220,.95);
-      background: rgba(34,197,94,.18);
-      border-color: rgba(34,197,94,.35);
-      font-weight: 700;
-    }
-    .chip.bad{
-      color: rgba(255,210,210,.95);
-      background: rgba(239,68,68,.16);
-      border-color: rgba(239,68,68,.35);
-      font-weight: 700;
-    }
-
-    .section {
-      margin-top: 14px;
-      background: linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.04));
-      border: 1px solid var(--border);
-      border-radius: var(--r);
-      box-shadow: var(--shadow);
-      overflow: hidden;
-    }
-    .section-head {
-      padding: 14px 16px 10px;
-      display: flex; align-items: baseline; justify-content: space-between; gap: 12px;
-      border-bottom: 1px solid rgba(255,255,255,.07);
-    }
-    .section-head h2 { margin: 0; font-size: 15px; font-weight: 800; }
-    .section-head .sub { color: var(--muted); font-size: 12px; }
-
-    .grid-3 {
-      display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 14px;
-    }
-    .grid-2 {
-      display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 14px;
-    }
-    @media (max-width: 920px) {
-      .grid-3 { grid-template-columns: 1fr; }
-      .grid-2 { grid-template-columns: 1fr; }
-    }
-
-    .card {
-      background: rgba(255,255,255,.055);
-      border: 1px solid rgba(255,255,255,.10);
-      border-radius: var(--r);
-    }
-
-    .kpi { padding: 14px 14px 12px; text-align: center; }
-    .kpi-title { color: rgba(255,255,255,.78); font-size: 12px; }
-    .kpi-value { margin-top: 8px; font-size: 34px; font-weight: 800; letter-spacing: .4px; }
-    .kpi-foot { margin-top: 10px; color: var(--muted); font-size: 12px; }
-    .kpi-foot b { color: rgba(255,255,255,.85); }
-
-    .pill {
-      border: 1px solid rgba(255,255,255,.10);
-      background: rgba(255,255,255,.05);
-      border-radius: 16px;
-      padding: 12px 12px;
-      min-height: 76px;
-      text-align: center;
-    }
-    .pill.soft { background: rgba(255,255,255,.035); }
-    .pill-title { color: var(--muted); font-size: 12px; }
-    .pill-value { margin-top: 8px; font-weight: 700; font-size: 18px; }
-    .pill-text { margin-top: 8px; color: var(--muted); font-size: 12px; line-height: 1.7; }
-
-    .mt { margin-top: 12px; }
-
-    .table-wrap { padding: 10px 12px 14px; overflow:auto; }
-    table { width: 100%; border-collapse: collapse; min-width: 840px; }
-    th, td {
-      padding: 10px 10px;
-      border-bottom: 1px solid rgba(255,255,255,.08);
-      text-align: center;
-      white-space: nowrap;
-      font-size: 12.5px;
-    }
-    th { color: rgba(255,255,255,.82); font-weight: 700; }
-    td { color: rgba(255,255,255,.90); }
-    tr:hover td { background: rgba(255,255,255,.03); }
-
-    .note { padding: 0 16px 14px; color: var(--muted); font-size: 12px; line-height: 1.7; }
-    .footer { margin-top: 20px; text-align: center; color: var(--muted); font-size: 12px; }
-
-    @media print {
-      @page { size: A4; margin: 12mm; }
-      body{ background: var(--bg) !important; color: var(--text) !important; }
-      .header, .card, .pill, .chip{
-        background: rgba(255,255,255,.06) !important;
-        border-color: rgba(255,255,255,.12) !important;
-        box-shadow: none !important;
+    @media print{
+      html,body{ background:#0a0f1a !important; }
+      *{
+        -webkit-print-color-adjust: exact !important;
+        print-color-adjust: exact !important;
       }
-      .container{ max-width: 100% !important; margin: 0 !important; }
-      a{ color: inherit !important; text-decoration: none !important; }
-      canvas{ max-width: 100% !important; }
+      .wrap{ max-width:none; padding: 14px 12px 18px; }
+      .hero,.card,.ticket-block,.table-wrap{ box-shadow:none !important; }
+      canvas{ height:250px !important; }
+      .table-wrap{ overflow: visible !important; }
     }
   </style>
 </head>
 
 <body>
-  <div class="container">
+  <div class="wrap">
 
-    <div class="header">
-      <h1 class="title">گزارش ماهانه مرکز تماس زودکس — آذر ۱۴۰۴</h1>
+    <div class="hero">
+      <h1>گزارش سالانه مرکز تماس زودکس — فروردین تا آذر ۱۴۰۴</h1>
       <div class="subtitle">
-        بازه گزارش: ۱ تا ۳۰ آذر | تفکیک شیفت: ۰۸–۱۶ و ۱۶–۲۴<br/>
-        ورودی مرکز تماس: خدمات مشتریان + مجموعه‌ها | تیکت‌ها + پروژه تماس (Outbound)
-      </div>
-      <div class="chips">
-        <span class="chip">SLA تماس = Answered با Wait Time ≤ 20s</span>
-        <span class="chip">Lost = Abandoned + Missed</span>
-        <span class="chip">SLA تیکت = پاسخ زیر ۸ دقیقه</span>
+        روند ماهانه تماس‌های ورودی و شاخص‌های کلیدی (SLA≤20s، Answer Rate، Lost Rate).<br>
+        <b>تعاریف:</b> SLA تماس = Wait ≤ 20s فقط روی Answered • Lost = Abandoned + Missed
       </div>
     </div>
 
-    <!-- KPI Cards -->
-    <div class="grid-3 mt">
-      <div class="card kpi">
-        <div class="kpi-title">کل تماس‌های ورودی</div>
-        <div class="kpi-value">36,575</div>
-        <div class="kpi-foot">Answer Rate <b>92.0٪</b> • SLA≤20s <b>75.6٪</b></div>
-      </div>
+    <div class="grid" id="kpiGrid"></div>
 
-      <div class="card kpi">
-        <div class="kpi-title">کل تیکت‌ها</div>
-        <div class="kpi-value">7,067</div>
-        <div class="kpi-foot">Inside SLA <b>83.7٪</b> • زیر ۲ دقیقه <b>46.6٪</b></div>
-      </div>
+    <!-- ✅ اضافه‌شده: روند کیفیت پاسخ‌گویی (یک نگاه) -->
+    <div class="section-title">
+      <h2>روند کیفیت پاسخ‌گویی (یک نگاه)</h2>
+      <div class="note">آذر + میانگین ۳ ماه اخیر + تغییر نسبت به ۳ ماه قبل</div>
+    </div>
+    <div class="grid" id="trendSnapshot"></div>
 
-      <div class="card kpi">
-        <div class="kpi-title">پروژه تماس (Outbound)</div>
-        <div class="kpi-value">12,008</div>
-        <div class="kpi-foot">پیگیری فعال تجربه مشتری</div>
+    <div class="section-title">
+      <h2>نمودارهای مدیریتی — روند ماهانه</h2>
+      <div class="note">در یک نگاه: کیفیت پاسخ‌گویی و کاهش تماس‌های از دست‌رفته</div>
+    </div>
+
+    <div class="grid">
+      <div class="card chart-card span-6">
+        <h3>SLA≤20s (کل)</h3>
+        <canvas id="slaChart"></canvas>
+      </div>
+      <div class="card chart-card span-6">
+        <h3>Lost Rate (کل)</h3>
+        <canvas id="lostRateChart"></canvas>
+      </div>
+      <div class="card chart-card span-6">
+        <h3>Answer Rate (کل)</h3>
+        <canvas id="answerRateChart"></canvas>
+      </div>
+      <div class="card chart-card span-6">
+        <h3>حجم تماس‌ها (Offered)</h3>
+        <canvas id="offeredChart"></canvas>
       </div>
     </div>
 
-    <!-- Exec Trend (One Glance) -->
-    <section class="card section">
-      <div class="section-head">
-        <h2>روند کیفیت پاسخگویی (یک نگاه)</h2>
-        <div class="sub">آذر + میانگین ۳ ماه اخیر + تغییر نسبت به ۳ ماه قبل</div>
-      </div>
+    <div class="section-title">
+      <h2>جدول ماه‌به‌ماه — تماس‌های ورودی</h2>
+      <div class="note">تفکیک خدمات مشتریان و مجموعه‌ها</div>
+    </div>
 
-      <div class="grid-3 mt" style="padding: 0 14px 14px;">
-        <div class="pill">
-          <div class="chips" style="justify-content:flex-start; margin-top:0;">
-            <span class="chip bad">Δ ↓ 3.3٪</span>
-          </div>
-          <div class="pill-title">Lost Rate</div>
-          <div class="pill-value" style="font-size:34px; margin-top:6px;">8.0٪</div>
-          <div class="pill-text">میانگین ۳ ماه اخیر: <b>6.3٪</b> • ۳ ماه قبل: <b>9.7٪</b></div>
+    <div class="table-wrap">
+      <table id="monthlyTable">
+        <thead>
+          <tr>
+            <th>ماه</th>
+            <th>بخش</th>
+            <th>Offered</th>
+            <th>Answered</th>
+            <th>Abandoned</th>
+            <th>Missed</th>
+            <th>Lost</th>
+            <th>Answer Rate</th>
+            <th>Lost Rate</th>
+            <th>SLA≤20s</th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+    </div>
+
+    <div class="section-title">
+      <h2>پایش فعال تجربه مشتری — تماس‌های خروجی</h2>
+      <div class="note">صرفاً فاز شروع/فاز مقیاس (بدون نمودارهای اضافی)</div>
+    </div>
+
+    <div class="grid">
+      <div class="card span-6">
+        <div class="phase-title">
+          <span>آذر ۱۴۰۴ — فاز مقیاس</span>
+          <span class="tag" id="obAzarTotalTag">Total: —</span>
         </div>
+        <div class="meta">در آذر، برنامه تماس‌های خروجی به‌صورت ساختارمند و در مقیاس عملیاتی اجرا شد.</div>
+        <div class="bars" id="obAzarBars"></div>
+      </div>
 
-        <div class="pill">
-          <div class="chips" style="justify-content:flex-start; margin-top:0;">
-            <span class="chip good">Δ ↑ 3.3٪</span>
-          </div>
-          <div class="pill-title">Answer Rate</div>
-          <div class="pill-value" style="font-size:34px; margin-top:6px;">92.0٪</div>
-          <div class="pill-text">میانگین ۳ ماه اخیر: <b>93.7٪</b> • ۳ ماه قبل: <b>90.3٪</b></div>
+      <div class="card span-6">
+        <div class="phase-title">
+          <span>آبان ۱۴۰۴ — فاز شروع</span>
+          <span class="tag" id="obAbanTotalTag">Total: —</span>
         </div>
+        <div class="meta">در آبان، برنامه تماس‌های خروجی به شکل اولیه و پایلوت آغاز شد.</div>
+        <div class="bars" id="obAbanBars"></div>
+      </div>
+    </div>
 
-        <div class="pill">
-          <div class="chips" style="justify-content:flex-start; margin-top:0;">
-            <span class="chip good">Δ ↑ 7.9٪</span>
-          </div>
-          <div class="pill-title">SLA تماس (≤ 20s)</div>
-          <div class="pill-value" style="font-size:34px; margin-top:6px;">76.5٪</div>
-          <div class="pill-text">میانگین ۳ ماه اخیر: <b>78.0٪</b> • ۳ ماه قبل: <b>70.1٪</b></div>
-        </div>
-      </div>
+    <div class="section-title">
+      <h2>تیکت‌ها — وضعیت SLA و پاسخ سریع</h2>
+      <div class="note">آبان و آذر (جداگانه) + جمع‌بندی ترکیبی + نمودار مدیریتی ساده</div>
+    </div>
 
-      <div class="note">نکته: این بخش صرفاً برای نمایش سریع روند به مدیریت طراحی شده و جایگزین جدول‌های جزئیات شیفت/روز نیست.</div>
-    </section>
+    <div class="ticket-grid" id="ticketArea"></div>
 
-    <!-- CS Inbound Table -->
-    <section class="card section">
-      <div class="section-head">
-        <h2>عملکرد تماس‌های ورودی — خدمات مشتریان</h2>
-        <div class="sub">تفکیک شیفت + جمع کل</div>
+    <div class="grid">
+      <div class="card chart-card span-12">
+        <h3>مقایسه مدیریتی تیکت‌ها — آبان vs آذر (درصدی)</h3>
+        <canvas id="ticketCompareChart"></canvas>
       </div>
-      <div class="table-wrap">
-        <table>
-          <thead>
-            <tr>
-              <th>شیفت</th>
-              <th>Offered</th>
-              <th>Answered</th>
-              <th>Abandoned</th>
-              <th>Missed</th>
-              <th>Lost</th>
-              <th>Answer Rate</th>
-              <th>Abandon Rate</th>
-              <th>ASA (ثانیه)</th>
-              <th>AHT (ثانیه)</th>
-              <th>SLA ≤ 20s</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>۰۸:۰۰–۱۶:۰۰</td>
-              <td>10,701</td>
-              <td>10,321</td>
-              <td>220</td>
-              <td>160</td>
-              <td>380</td>
-              <td>96.4٪</td>
-              <td>2.1٪</td>
-              <td>15.4</td>
-              <td>66.1</td>
-              <td>86.6٪</td>
-            </tr>
-            <tr>
-              <td>۱۶:۰۰–۲۴:۰۰</td>
-              <td>21,865</td>
-              <td>19,474</td>
-              <td>1,959</td>
-              <td>432</td>
-              <td>2,391</td>
-              <td>89.1٪</td>
-              <td>9.0٪</td>
-              <td>33.9</td>
-              <td>62.1</td>
-              <td>69.7٪</td>
-            </tr>
-            <tr>
-              <td><b>جمع کل</b></td>
-              <td><b>32,566</b></td>
-              <td><b>29,795</b></td>
-              <td><b>2,179</b></td>
-              <td><b>592</b></td>
-              <td><b>2,771</b></td>
-              <td><b>91.5٪</b></td>
-              <td><b>6.7٪</b></td>
-              <td><b>27.5</b></td>
-              <td><b>63.5</b></td>
-              <td><b>75.6٪</b></td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-      <div class="note">SLA تماس فقط برای تماس‌های پاسخ‌داده‌شده و بر اساس Wait Time ≤ 20 ثانیه محاسبه شده است.</div>
-    </section>
+    </div>
 
-    <!-- Vendors Inbound Table -->
-    <section class="card section">
-      <div class="section-head">
-        <h2>عملکرد تماس‌های ورودی — مجموعه‌ها</h2>
-        <div class="sub">تفکیک شیفت + جمع کل</div>
-      </div>
-      <div class="table-wrap">
-        <table>
-          <thead>
-            <tr>
-              <th>شیفت</th>
-              <th>Offered</th>
-              <th>Answered</th>
-              <th>Abandoned</th>
-              <th>Missed</th>
-              <th>Lost</th>
-              <th>Answer Rate</th>
-              <th>Abandon Rate</th>
-              <th>ASA (ثانیه)</th>
-              <th>AHT (ثانیه)</th>
-              <th>SLA ≤ 20s</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>۰۸:۰۰–۱۶:۰۰</td>
-              <td>1,511</td>
-              <td>1,422</td>
-              <td>1</td>
-              <td>88</td>
-              <td>89</td>
-              <td>94.1٪</td>
-              <td>0.1٪</td>
-              <td>14.7</td>
-              <td>122.2</td>
-              <td>80.7٪</td>
-            </tr>
-            <tr>
-              <td>۱۶:۰۰–۲۴:۰۰</td>
-              <td>2,498</td>
-              <td>2,423</td>
-              <td>3</td>
-              <td>72</td>
-              <td>75</td>
-              <td>97.0٪</td>
-              <td>0.1٪</td>
-              <td>12.0</td>
-              <td>98.2</td>
-              <td>85.6٪</td>
-            </tr>
-            <tr>
-              <td><b>جمع کل</b></td>
-              <td><b>4,009</b></td>
-              <td><b>3,845</b></td>
-              <td><b>4</b></td>
-              <td><b>160</b></td>
-              <td><b>164</b></td>
-              <td><b>95.9٪</b></td>
-              <td><b>0.1٪</b></td>
-              <td><b>12.9</b></td>
-              <td><b>110.0</b></td>
-              <td><b>83.8٪</b></td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-      <div class="note">Lost در مجموعه‌ها عمدتاً از Missed تشکیل می‌شود و Abandoned بسیار محدود است.</div>
-    </section>
-
-    <!-- Tickets Section -->
-    <section class="card section">
-      <div class="section-head">
-        <h2>عملکرد تیکت‌های مشتریان — آذر ۱۴۰۴</h2>
-        <div class="sub">خلاصه وضعیت پاسخگویی بر اساس SLA زیر ۸ دقیقه</div>
-      </div>
-      <div class="grid-3 mt" style="padding: 0 14px 14px;">
-        <div class="pill">
-          <div class="pill-title">Inside SLA (زیر ۸ دقیقه)</div>
-          <div class="pill-value" style="font-size:28px;">5,912 (83.7٪)</div>
-          <div class="pill-text">کیفیت پاسخگویی در SLA حفظ شده است.</div>
-        </div>
-        <div class="pill">
-          <div class="pill-title">Outside SLA</div>
-          <div class="pill-value" style="font-size:28px;">1,155 (16.3٪)</div>
-          <div class="pill-text">نیازمند تمرکز در ساعات پرترافیک.</div>
-        </div>
-        <div class="pill">
-          <div class="pill-title">پاسخ زیر ۲ دقیقه</div>
-          <div class="pill-value" style="font-size:28px;">3,291 (46.6٪)</div>
-          <div class="pill-text">ریتم پاسخگویی سریع قابل قبول است.</div>
-        </div>
-      </div>
-      <div class="grid-2" style="padding: 0 14px 14px;">
-        <div class="pill soft">
-          <div class="pill-title">بعد از ۱۲ شب</div>
-          <div class="pill-value" style="font-size:24px;">244 (3.5٪)</div>
-          <div class="pill-text">برای تصمیم‌گیری پوشش شیفت شب قابل بررسی است.</div>
-        </div>
-        <div class="pill soft">
-          <div class="pill-title">رفت‌وبرگشت</div>
-          <div class="pill-value" style="font-size:24px;">429 (6.1٪)</div>
-          <div class="pill-text">می‌تواند شاخص اصلاح فرآیند/کیفیت باشد.</div>
-        </div>
-      </div>
-      <div class="note">SLA تیکت بر اساس «زمان پاسخ‌گویی» و آستانه ۸ دقیقه گزارش شده است.</div>
-    </section>
-
-    <!-- Project Calls Section -->
-    <section class="card section">
-      <div class="section-head">
-        <h2>پروژه تماس — پیگیری فعال تجربه مشتری (Outbound)</h2>
-        <div class="sub">آذر ۱۴۰۴ — اجرای ساختارمند تماس‌های خروجی</div>
-      </div>
-
-      <div class="grid-2 mt" style="padding: 0 14px 14px;">
-        <div class="pill">
-          <div class="pill-title">فاز مقیاس — آذر ۱۴۰۴</div>
-          <div class="pill-value" style="font-size:30px;">Total: 12,008</div>
-          <div class="pill-text">
-            تاخیر سفارش: <b>9,904</b> • مشتری جدید: <b>1,899</b> • NPS: <b>205</b>
-          </div>
-        </div>
-        <div class="pill">
-          <div class="pill-title">فاز شروع — آبان ۱۴۰۴</div>
-          <div class="pill-value" style="font-size:30px;">Total: 5,663</div>
-          <div class="pill-text">
-            تاخیر سفارش: <b>4,286</b> • NPS: <b>893</b> • مشتری جدید: <b>484</b>
-          </div>
-        </div>
-      </div>
-
-      <div class="note">هدف: پیگیری فعال سفارش‌های با تاخیر، تماس با مشتریان جدید و نظرسنجی NPS برای مدیریت تجربه مشتری.</div>
-    </section>
-
-    <!-- Management Summary (FINAL - appended at end) -->
-    <section class="card section">
-      <div class="section-head">
-        <h2>جمع‌بندی مدیریتی — آذر ۱۴۰۴</h2>
-        <div class="sub">خلاصه برای ارائه به مدیریت</div>
-      </div>
-      <div class="note" style="padding-top:14px;">
-        در آذرماه ۱۴۰۴، حجم تماس‌های ورودی مرکز تماس زودکس با رشد <b>۲۴٪</b> نسبت به آبان (افزایش بیش از <b>۷ هزار</b> تماس) مواجه بوده است.
-        این افزایش عمدتاً ناشی از جشنواره‌های پیش‌رو، شروع فصل زمستان و مشکلات آب‌وهوا بوده و مشتریان برای پیگیری سفارش‌ها تماس بیشتری برقرار کرده‌اند.
-        <br/><br/>
-        با وجود این افزایش قابل توجه در بار ورودی، شاخص‌های کلیدی عملکرد از جمله <b>Answer Rate</b> و <b>SLA</b> پاسخ‌گویی در سطح قابل قبول و نزدیک به ماه قبل حفظ شده‌اند؛
-        موضوعی که نشان‌دهنده توان عملیاتی و کنترل فشار کاری توسط تیم مرکز تماس است.
-        <br/><br/>
-        همچنین در راستای جلب رضایت مشتریان و اطلاع مدیریت محترم، بخش «پروژه تماس» به‌صورت سازمان‌یافته در گزارش این ماه گنجانده شده است
-        که شامل تماس با مشتریان جدید، پیگیری مشتریانی که سفارش آن‌ها با تاخیر به دستشان رسیده و تماس‌های نظرسنجی NPS است.
-        مجموعاً بیش از <b>۱۲,۰۰۸</b> تماس خروجی توسط همکاران خدمات مشتریان انجام شده که از نظر حجم و اثرگذاری قابل ملاحظه است.
-        <br/><br/>
-        <b>خلاصه اعداد کلیدی آذر:</b><br/>
-        • <b>36,575</b> تماس ورودی ثبت شده است.<br/>
-        • <b>Answer Rate: 92.0٪</b> بوده است.<br/>
-        • <b>75.6٪</b> تماس‌ها زیر <b>۲۰ ثانیه</b> پاسخ داده شده‌اند (SLA تماس).<br/>
-        • <b>7,067</b> تیکت ثبت شده است.<br/>
-        • <b>83.7٪</b> تیکت‌ها داخل SLA (زیر ۸ دقیقه) پاسخ داده شده‌اند.<br/>
-        • <b>46.6٪</b> تیکت‌ها زیر ۲ دقیقه پاسخ داده شده‌اند.<br/>
-        <br/>
-        در مجموع، عملکرد آذرماه نشان‌دهنده پایداری کیفیت خدمات در شرایط افزایش حجم، بلوغ فرآیندهای پاسخ‌گویی و حرکت به‌سمت مدیریت فعال تجربه مشتری است.
-      </div>
-    </section>
-
-    <div class="footer">گزارش تحلیلی مرکز تماس زودکس — نسخه HTML قابل تبدیل به PDF</div>
+    <div class="footer">نسخه نهایی — آماده ارائه و خروجی PDF</div>
   </div>
+
+<script>
+  // ---------- Helpers ----------
+  const months = ["فروردین","اردیبهشت","خرداد","تیر","مرداد","شهریور","مهر","آبان","آذر"];
+
+  const fmt = (n) => (n === null || n === undefined) ? "—" : Number(n).toLocaleString("en-US");
+  const pct = (n) => (n === null || n === undefined) ? "—" : (Math.round(n*10)/10).toFixed(1) + "٪";
+  const rate = (num,den) => den ? (num/den)*100 : null;
+  const sum = (arr)=> arr.reduce((s,v)=> s + (v||0), 0);
+  const lost = (ab,ms) => (ab||0) + (ms||0);
+
+  function weightedSla(answeredArr, slaArr){
+    let w=0, ws=0;
+    for(let i=0;i<slaArr.length;i++){
+      const sla = slaArr[i];
+      const ans = answeredArr[i];
+      if (sla != null && ans != null){
+        w += ans; ws += sla*ans;
+      }
+    }
+    return w ? ws/w : null;
+  }
+
+  function pillClassFor(type, value){
+    if (value == null) return "mid";
+    if (type === "lost"){
+      if (value <= 5) return "good";
+      if (value <= 10) return "mid";
+      return "bad";
+    } else {
+      if (value >= 80) return "good";
+      if (value >= 70) return "mid";
+      return "bad";
+    }
+  }
+
+  function pillPct(type, value){
+    const cls = pillClassFor(type, value);
+    return `<span class="pill ${cls}">${pct(value)}</span>`;
+  }
+
+  // ---------- Inbound Data ----------
+  const inbound = {
+    cs: {
+      offered:  [34232, 35351, 33081, 33592, 33854, 31587, 28692, 25930, 32566],
+      answered: [27456, 30045, 28168, 29766, 30576, 28493, 26770, 24723, 29795],
+      abandoned:[68,    71,    38,    50,    37,    1783,  1159,  455,   2179],
+      missed:   [6708,  5235,  4875,  3776,  3241,  1311,  763,   752,   592],
+      sla:      [52.5,  61.7,  62.2,  66.7,  72.8,  68.0,  75.1,  81.7,  75.6]
+    },
+    mj: {
+      offered:  [4474,  4615,  4335,  4204,  4294,  4343,  3936,  3468,  4009],
+      answered: [4224,  4372,  4159,  4033,  4113,  4058,  3732,  3354,  3845],
+      abandoned:[4,     2,     1,     1,     1,     10,    7,     111,   4],
+      missed:   [246,   241,   175,   170,   180,   275,   197,   3,     160],
+      sla:      [73.0,  76.6,  76.4,  79.0,  78.1,  74.2,  78.8,  83.0,  83.8]
+    }
+  };
+
+  function seriesTotal(){
+    const n = months.length;
+    const offered = Array.from({length:n}, (_,i)=> inbound.cs.offered[i] + inbound.mj.offered[i]);
+    const answered= Array.from({length:n}, (_,i)=> inbound.cs.answered[i] + inbound.mj.answered[i]);
+    const lostArr = Array.from({length:n}, (_,i)=>
+      (inbound.cs.abandoned[i] + inbound.cs.missed[i]) + (inbound.mj.abandoned[i] + inbound.mj.missed[i])
+    );
+    const sla = Array.from({length:n}, (_,i)=>{
+      const ca = inbound.cs.answered[i], ma = inbound.mj.answered[i];
+      const cs = inbound.cs.sla[i],      ms = inbound.mj.sla[i];
+      const w = ca + ma;
+      return w ? ((cs*ca + ms*ma)/w) : null;
+    });
+    const answerRate = offered.map((o,i)=> o ? (answered[i]/o)*100 : null);
+    const lostRate   = offered.map((o,i)=> o ? (lostArr[i]/o)*100 : null);
+    return { offered, answered, lostArr, sla, answerRate, lostRate };
+  }
+
+  function buildKpis(){
+    const t = seriesTotal();
+    const totalOff = sum(t.offered);
+    const totalAns = sum(t.answered);
+    const totalLost = sum(t.lostArr);
+
+    const csOff = sum(inbound.cs.offered), mjOff = sum(inbound.mj.offered);
+
+    const totalSla = weightedSla(t.answered, t.sla);
+    const totalAR  = rate(totalAns, totalOff);
+    const totalLR  = rate(totalLost, totalOff);
+
+    const grid = document.getElementById("kpiGrid");
+    grid.innerHTML = `
+      <div class="card span-4">
+        <h3>کل تماس‌های ورودی</h3>
+        <div class="kpi">${fmt(totalOff)} <small>تماس</small></div>
+        <div class="meta">
+          Answered: <b>${fmt(totalAns)}</b><br>
+          سهم خدمات مشتریان: <b>${pct(rate(csOff,totalOff))}</b> • سهم مجموعه‌ها: <b>${pct(rate(mjOff,totalOff))}</b>
+        </div>
+      </div>
+
+      <div class="card span-4">
+        <h3>SLA تماس (≤20s)</h3>
+        <div class="kpi">${pct(totalSla)}</div>
+        <div class="meta">محاسبه وزن‌دار بر اساس Answered</div>
+      </div>
+
+      <div class="card span-4">
+        <h3>کیفیت پاسخ‌گویی (کل)</h3>
+        <div class="meta">
+          ${pillPct("answer", totalAR)} <span style="color:rgba(255,255,255,.75)">Answer Rate</span><br>
+          ${pillPct("lost", totalLR)} <span style="color:rgba(255,255,255,.75)">Lost Rate</span>
+        </div>
+        <div class="meta">Lost = Abandoned + Missed</div>
+      </div>
+    `;
+  }
+
+  function buildTable(){
+    const tbody = document.querySelector("#monthlyTable tbody");
+    tbody.innerHTML = "";
+
+    function row(month, label, o,a,ab,mi,sla){
+      const l = lost(ab,mi);
+      const ar = rate(a,o);
+      const lr = rate(l,o);
+      return `
+        <tr>
+          <td><b>${month}</b></td>
+          <td>${label}</td>
+          <td>${fmt(o)}</td>
+          <td>${fmt(a)}</td>
+          <td>${fmt(ab)}</td>
+          <td>${fmt(mi)}</td>
+          <td><b>${fmt(l)}</b></td>
+          <td>${pillPct("answer", ar)}</td>
+          <td>${pillPct("lost", lr)}</td>
+          <td>${pillPct("sla", sla)}</td>
+        </tr>
+      `;
+    }
+
+    for(let i=0;i<months.length;i++){
+      tbody.insertAdjacentHTML("beforeend", row(
+        months[i],"خدمات مشتریان",
+        inbound.cs.offered[i], inbound.cs.answered[i], inbound.cs.abandoned[i], inbound.cs.missed[i], inbound.cs.sla[i]
+      ));
+      tbody.insertAdjacentHTML("beforeend", row(
+        months[i],"مجموعه‌ها",
+        inbound.mj.offered[i], inbound.mj.answered[i], inbound.mj.abandoned[i], inbound.mj.missed[i], inbound.mj.sla[i]
+      ));
+    }
+  }
+
+  // ---------- Charts ----------
+  function baseOpts(){
+    return {
+      responsive:true,
+      maintainAspectRatio:false,
+      plugins:{
+        legend:{ labels:{ color:"rgba(255,255,255,.82)", font:{ size:12 } } },
+        tooltip:{ titleFont:{ size:12 }, bodyFont:{ size:12 } }
+      },
+      scales:{
+        x:{ ticks:{ color:"rgba(255,255,255,.78)", font:{ size:11 } }, grid:{ color:"rgba(255,255,255,.07)" } },
+        y:{ ticks:{ color:"rgba(255,255,255,.78)", font:{ size:11 } }, grid:{ color:"rgba(255,255,255,.07)" } }
+      }
+    };
+  }
+  function percentOpts(){
+    const o = baseOpts();
+    o.scales.y.ticks.callback = v => v + "٪";
+    o.scales.y.suggestedMin = 0;
+    o.scales.y.suggestedMax = 100;
+    return o;
+  }
+  function numberOpts(){
+    const o = baseOpts();
+    o.scales.y.ticks.callback = v => Number(v).toLocaleString("en-US");
+    return o;
+  }
+
+  function buildCharts(){
+    const t = seriesTotal();
+
+    new Chart(document.getElementById("slaChart"),{
+      type:"line",
+      data:{ labels: months, datasets:[ { label:"SLA≤20s — کل", data: t.sla, tension:.35, borderWidth:2, pointRadius:3 } ] },
+      options: percentOpts()
+    });
+
+    new Chart(document.getElementById("lostRateChart"),{
+      type:"line",
+      data:{ labels: months, datasets:[ { label:"Lost Rate — کل", data: t.lostRate, tension:.35, borderWidth:2, pointRadius:3 } ] },
+      options: percentOpts()
+    });
+
+    new Chart(document.getElementById("answerRateChart"),{
+      type:"line",
+      data:{ labels: months, datasets:[ { label:"Answer Rate — کل", data: t.answerRate, tension:.35, borderWidth:2, pointRadius:3 } ] },
+      options: percentOpts()
+    });
+
+    new Chart(document.getElementById("offeredChart"),{
+      type:"bar",
+      data:{
+        labels: months,
+        datasets:[
+          { label:"Offered — کل", data: t.offered, borderWidth:1 },
+          { label:"Offered — خدمات مشتریان", data: inbound.cs.offered, borderWidth:1 },
+          { label:"Offered — مجموعه‌ها", data: inbound.mj.offered, borderWidth:1 }
+        ]
+      },
+      options: numberOpts()
+    });
+  }
+
+  // ---------- Outbound (only phase cards) ----------
+  const outbound = {
+    aban: { total: 5663, delay: 4286, nps: 893, newc: 484 },
+    azar: { total: 12008, delay: 9904, nps: 205, newc: 1899 }
+  };
+
+  function renderPhaseBars(containerId, phase){
+    const total = outbound[phase].total || 0;
+    const items = [
+      { key:"delay", label:"تاخیر سفارش" },
+      { key:"newc",  label:"مشتری جدید" },
+      { key:"nps",   label:"NPS" }
+    ];
+    const el = document.getElementById(containerId);
+    el.innerHTML = items.map(it=>{
+      const val = outbound[phase][it.key] || 0;
+      const w = total ? (val/total)*100 : 0;
+      return `
+        <div class="bar-row">
+          <div class="bar-num">${fmt(val)}</div>
+          <div class="bar-track"><div class="bar-fill" style="width:${w.toFixed(2)}%"></div></div>
+          <div class="bar-label">${it.label}</div>
+        </div>
+      `;
+    }).join("");
+  }
+
+  function fillOutbound(){
+    document.getElementById("obAzarTotalTag").innerText = `Total: ${fmt(outbound.azar.total)}`;
+    document.getElementById("obAbanTotalTag").innerText = `Total: ${fmt(outbound.aban.total)}`;
+    renderPhaseBars("obAzarBars","azar");
+    renderPhaseBars("obAbanBars","aban");
+  }
+
+  // ---------- Tickets ----------
+  const tickets = {
+    azar: {
+      name: "آذر ۱۴۰۴",
+      total: 7067,
+      inside: 5912, insidePct: 83.7,
+      outside: 1155, outsidePct: 16.3,
+      under2: 3291, under2Pct: 46.6,
+      after12: 244, after12Pct: 3.5,
+      roundtrip: 429, roundtripPct: 6.1
+    },
+    aban: {
+      name: "آبان ۱۴۰۴",
+      total: 4541,
+      inside: 3868, insidePct: 85.2,
+      outside: 270, outsidePct: 5.9,
+      under2: 2086, under2Pct: 45.9,
+      after12: 153, after12Pct: 3.4,
+      roundtrip: 250, roundtripPct: 5.5
+    }
+  };
+
+  function combinedTickets(){
+    const A = tickets.aban, Z = tickets.azar;
+    const total = A.total + Z.total;
+
+    const inside = A.inside + Z.inside;
+    const outside = A.outside + Z.outside;
+    const under2 = A.under2 + Z.under2;
+    const after12 = A.after12 + Z.after12;
+    const roundtrip = A.roundtrip + Z.roundtrip;
+
+    return {
+      name: "ترکیب آبان + آذر",
+      total,
+      inside, insidePct: rate(inside,total),
+      outside, outsidePct: rate(outside,total),
+      under2, under2Pct: rate(under2,total),
+      after12, after12Pct: rate(after12,total),
+      roundtrip, roundtripPct: rate(roundtrip,total),
+    };
+  }
+
+  function ticketBlock(t){
+    return `
+      <div class="ticket-block">
+        <div class="ticket-head">
+          <div class="tname">${t.name}</div>
+          <div class="tsum">کل تیکت‌ها: <b style="color:rgba(255,255,255,.95)">${fmt(t.total)}</b></div>
+        </div>
+
+        <div class="ticket-cards">
+          <div class="tcard">
+            <div class="ttl">Inside SLA (زیر ۸ دقیقه)</div>
+            <div class="val">${fmt(t.inside)}</div>
+            <div class="sub">${pillPct("sla", t.insidePct)} کیفیت پاسخ‌گویی در SLA</div>
+          </div>
+
+          <div class="tcard">
+            <div class="ttl">Outside SLA</div>
+            <div class="val">${fmt(t.outside)}</div>
+            <div class="sub">${pillPct("lost", t.outsidePct)} خارج از SLA</div>
+          </div>
+
+          <div class="tcard">
+            <div class="ttl">پاسخ زیر ۲ دقیقه</div>
+            <div class="val">${fmt(t.under2)}</div>
+            <div class="sub">${pillPct("answer", t.under2Pct)} ریتم پاسخ‌گویی سریع</div>
+          </div>
+
+          <div class="tcard">
+            <div class="ttl">تیکت‌های بعد از ۱۲ شب</div>
+            <div class="val">${fmt(t.after12)}</div>
+            <div class="sub">${pillPct("lost", t.after12Pct)} برای تصمیم‌گیری شیفت شب</div>
+          </div>
+
+          <div class="tcard">
+            <div class="ttl">رفت‌وبرگشت</div>
+            <div class="val">${fmt(t.roundtrip)}</div>
+            <div class="sub">${pillPct("lost", t.roundtripPct)} شاخص بهبود کیفیت پاسخ/پیگیری</div>
+          </div>
+
+          <div class="tcard">
+            <div class="ttl">جمع‌بندی</div>
+            <div class="sub" style="margin-top:2px">
+              <span style="color:rgba(255,255,255,.86);font-weight:900">نکته:</span>
+              درصدها نسبت به کل تیکت‌های همان ماه محاسبه شده‌اند.
+            </div>
+          </div>
+        </div>
+      </div>
+    `;
+  }
+
+  function renderTicketsArea(){
+    const area = document.getElementById("ticketArea");
+    const combo = combinedTickets();
+    area.innerHTML =
+      ticketBlock(tickets.aban) +
+      ticketBlock(tickets.azar) +
+      `<div class="ticket-block" style="grid-column: span 12;">${ticketBlock(combo).replace('ticket-block','')}</div>`;
+  }
+
+  function ticketCompareChart(){
+    const A = tickets.aban, Z = tickets.azar;
+
+    new Chart(document.getElementById("ticketCompareChart"),{
+      type:"bar",
+      data:{
+        labels:["Inside SLA","Outside SLA","پاسخ زیر ۲ دقیقه","بعد از ۱۲ شب","رفت‌وبرگشت"],
+        datasets:[
+          { label:"آبان", data:[A.insidePct, A.outsidePct, A.under2Pct, A.after12Pct, A.roundtripPct], borderWidth:1 },
+          { label:"آذر",  data:[Z.insidePct, Z.outsidePct, Z.under2Pct, Z.after12Pct, Z.roundtripPct], borderWidth:1 }
+        ]
+      },
+      options:(()=>{
+        const o = percentOpts();
+        o.plugins.legend.position = "top";
+        return o;
+      })()
+    });
+  }
+
+  // ---------- ✅ Trend Snapshot (the screenshot block) ----------
+  function avg(arr, from, to){
+    let s=0, c=0;
+    for(let i=from;i<=to;i++){
+      const v = arr[i];
+      if(v!=null && !Number.isNaN(v)){ s+=v; c++; }
+    }
+    return c ? (s/c) : null;
+  }
+  function deltaBadgeHTML(delta){
+    if(delta == null) return "";
+    const up = delta >= 0;
+    const cls = up ? "" : "down";
+    const arrow = up ? "▲" : "▼";
+    const val = Math.abs(delta);
+    return `<div class="badge ${cls}">${arrow} ${val.toFixed(1)}٪</div>`;
+  }
+
+  function renderTrendSnapshot(){
+    const t = seriesTotal();
+
+    const last = months.length - 1;         // آذر
+    const recentFrom = Math.max(0, last-2); // ۳ ماه اخیر
+    const prevFrom = Math.max(0, last-5);   // ۳ ماه قبل آن
+    const prevTo = Math.max(0, last-3);
+
+    const azarSLA = t.sla[last];
+    const azarAR  = t.answerRate[last];
+    const azarLR  = t.lostRate[last];
+
+    const recentSLA = avg(t.sla, recentFrom, last);
+    const recentAR  = avg(t.answerRate, recentFrom, last);
+    const recentLR  = avg(t.lostRate, recentFrom, last);
+
+    const prevSLA = avg(t.sla, prevFrom, prevTo);
+    const prevAR  = avg(t.answerRate, prevFrom, prevTo);
+    const prevLR  = avg(t.lostRate, prevFrom, prevTo);
+
+    const dSLA = (recentSLA!=null && prevSLA!=null) ? (recentSLA - prevSLA) : null;
+    const dAR  = (recentAR!=null && prevAR!=null) ? (recentAR - prevAR) : null;
+    const dLR  = (recentLR!=null && prevLR!=null) ? (recentLR - prevLR) : null;
+
+    const el = document.getElementById("trendSnapshot");
+    el.innerHTML = `
+      <div class="card snap span-4">
+        ${deltaBadgeHTML(dLR)}
+        <div class="label"><span>Lost Rate</span></div>
+        <div class="value">${pct(azarLR)}</div>
+        <div class="subline">
+          میانگین ۳ ماه اخیر: <b>${pct(recentLR)}</b> • ۳ ماه قبل: <b>${pct(prevLR)}</b>
+        </div>
+      </div>
+
+      <div class="card snap span-4">
+        ${deltaBadgeHTML(dAR)}
+        <div class="label"><span>Answer Rate</span></div>
+        <div class="value">${pct(azarAR)}</div>
+        <div class="subline">
+          میانگین ۳ ماه اخیر: <b>${pct(recentAR)}</b> • ۳ ماه قبل: <b>${pct(prevAR)}</b>
+        </div>
+      </div>
+
+      <div class="card snap span-4">
+        ${deltaBadgeHTML(dSLA)}
+        <div class="label"><span>SLA تماس (≤20s)</span></div>
+        <div class="value">${pct(azarSLA)}</div>
+        <div class="subline">
+          میانگین ۳ ماه اخیر: <b>${pct(recentSLA)}</b> • ۳ ماه قبل: <b>${pct(prevSLA)}</b>
+        </div>
+      </div>
+    `;
+  }
+
+  // ---------- Run ----------
+  buildKpis();
+  renderTrendSnapshot();  // ✅ فقط همین اضافه شده
+  buildTable();
+  buildCharts();
+  fillOutbound();
+  renderTicketsArea();
+  ticketCompareChart();
+</script>
 </body>
 </html>
