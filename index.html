@@ -1,0 +1,477 @@
+<!doctype html>
+<html lang="fa" dir="rtl">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>گزارش ماهانه مرکز تماس زودکس — آذر ۱۴۰۴</title>
+
+  <!-- Font -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --bg: #0b1020;
+      --panel: rgba(255,255,255,.06);
+      --panel2: rgba(255,255,255,.045);
+      --border: rgba(255,255,255,.10);
+      --border2: rgba(255,255,255,.14);
+      --text: rgba(255,255,255,.92);
+      --muted: rgba(255,255,255,.62);
+      --accent: #7dd3fc;
+      --accent2: #a7f3d0;
+      --warn: #fbbf24;
+      --bad: #fb7185;
+      --good: #34d399;
+      --shadow: 0 18px 45px rgba(0,0,0,.35);
+      --r: 18px;
+    }
+
+    * { box-sizing: border-box; }
+    html, body { height: 100%; }
+    body {
+      margin: 0;
+      font-family: "Vazirmatn", system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      background: radial-gradient(1200px 600px at 15% 25%, rgba(16,185,129,.25), transparent 60%),
+                  radial-gradient(900px 500px at 85% 10%, rgba(59,130,246,.28), transparent 55%),
+                  radial-gradient(700px 500px at 70% 85%, rgba(236,72,153,.20), transparent 55%),
+                  var(--bg);
+      color: var(--text);
+    }
+
+    .container { max-width: 1180px; margin: 24px auto 40px; padding: 0 16px; }
+    .header {
+      background: linear-gradient(180deg, rgba(255,255,255,.07), rgba(255,255,255,.045));
+      border: 1px solid var(--border);
+      border-radius: calc(var(--r) + 6px);
+      padding: 20px 18px 16px;
+      box-shadow: var(--shadow);
+      text-align: center;
+    }
+    .title { margin: 0; font-size: 22px; font-weight: 800; letter-spacing: .2px; }
+    .subtitle { margin: 8px 0 0; color: var(--muted); font-size: 13px; line-height: 1.8; }
+
+    .chips { display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; margin-top: 10px; }
+    .chip {
+      font-size: 12px; color: var(--muted);
+      border: 1px solid var(--border);
+      background: rgba(255,255,255,.05);
+      padding: 6px 10px; border-radius: 999px;
+    }
+
+    /* mini delta chips (for exec trend cards) */
+    .chip.good{
+      color: rgba(200,255,220,.95);
+      background: rgba(34,197,94,.18);
+      border-color: rgba(34,197,94,.35);
+      font-weight: 700;
+    }
+    .chip.bad{
+      color: rgba(255,210,210,.95);
+      background: rgba(239,68,68,.16);
+      border-color: rgba(239,68,68,.35);
+      font-weight: 700;
+    }
+
+    .section {
+      margin-top: 14px;
+      background: linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.04));
+      border: 1px solid var(--border);
+      border-radius: var(--r);
+      box-shadow: var(--shadow);
+      overflow: hidden;
+    }
+    .section-head {
+      padding: 14px 16px 10px;
+      display: flex; align-items: baseline; justify-content: space-between; gap: 12px;
+      border-bottom: 1px solid rgba(255,255,255,.07);
+    }
+    .section-head h2 { margin: 0; font-size: 15px; font-weight: 800; }
+    .section-head .sub { color: var(--muted); font-size: 12px; }
+
+    .grid-3 {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 14px;
+    }
+    .grid-2 {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 14px;
+    }
+    @media (max-width: 920px) {
+      .grid-3 { grid-template-columns: 1fr; }
+      .grid-2 { grid-template-columns: 1fr; }
+    }
+
+    .card {
+      background: rgba(255,255,255,.055);
+      border: 1px solid rgba(255,255,255,.10);
+      border-radius: var(--r);
+    }
+
+    .kpi { padding: 14px 14px 12px; text-align: center; }
+    .kpi-title { color: rgba(255,255,255,.78); font-size: 12px; }
+    .kpi-value { margin-top: 8px; font-size: 34px; font-weight: 800; letter-spacing: .4px; }
+    .kpi-foot { margin-top: 10px; color: var(--muted); font-size: 12px; }
+    .kpi-foot b { color: rgba(255,255,255,.85); }
+
+    .pill {
+      border: 1px solid rgba(255,255,255,.10);
+      background: rgba(255,255,255,.05);
+      border-radius: 16px;
+      padding: 12px 12px;
+      min-height: 76px;
+      text-align: center;
+    }
+    .pill.soft { background: rgba(255,255,255,.035); }
+    .pill-title { color: var(--muted); font-size: 12px; }
+    .pill-value { margin-top: 8px; font-weight: 700; font-size: 18px; }
+    .pill-text { margin-top: 8px; color: var(--muted); font-size: 12px; line-height: 1.7; }
+
+    .mt { margin-top: 12px; }
+
+    .table-wrap { padding: 10px 12px 14px; overflow:auto; }
+    table { width: 100%; border-collapse: collapse; min-width: 840px; }
+    th, td {
+      padding: 10px 10px;
+      border-bottom: 1px solid rgba(255,255,255,.08);
+      text-align: center;
+      white-space: nowrap;
+      font-size: 12.5px;
+    }
+    th { color: rgba(255,255,255,.82); font-weight: 700; }
+    td { color: rgba(255,255,255,.90); }
+    tr:hover td { background: rgba(255,255,255,.03); }
+
+    .note { padding: 0 16px 14px; color: var(--muted); font-size: 12px; line-height: 1.7; }
+    .footer { margin-top: 20px; text-align: center; color: var(--muted); font-size: 12px; }
+
+    @media print {
+      @page { size: A4; margin: 12mm; }
+      body{ background: var(--bg) !important; color: var(--text) !important; }
+      .header, .card, .pill, .chip{
+        background: rgba(255,255,255,.06) !important;
+        border-color: rgba(255,255,255,.12) !important;
+        box-shadow: none !important;
+      }
+      .container{ max-width: 100% !important; margin: 0 !important; }
+      a{ color: inherit !important; text-decoration: none !important; }
+      canvas{ max-width: 100% !important; }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+
+    <div class="header">
+      <h1 class="title">گزارش ماهانه مرکز تماس زودکس — آذر ۱۴۰۴</h1>
+      <div class="subtitle">
+        بازه گزارش: ۱ تا ۳۰ آذر | تفکیک شیفت: ۰۸–۱۶ و ۱۶–۲۴<br/>
+        ورودی مرکز تماس: خدمات مشتریان + مجموعه‌ها | تیکت‌ها + پروژه تماس (Outbound)
+      </div>
+      <div class="chips">
+        <span class="chip">SLA تماس = Answered با Wait Time ≤ 20s</span>
+        <span class="chip">Lost = Abandoned + Missed</span>
+        <span class="chip">SLA تیکت = پاسخ زیر ۸ دقیقه</span>
+      </div>
+    </div>
+
+    <!-- KPI Cards -->
+    <div class="grid-3 mt">
+      <div class="card kpi">
+        <div class="kpi-title">کل تماس‌های ورودی</div>
+        <div class="kpi-value">36,575</div>
+        <div class="kpi-foot">Answer Rate <b>92.0٪</b> • SLA≤20s <b>75.6٪</b></div>
+      </div>
+
+      <div class="card kpi">
+        <div class="kpi-title">کل تیکت‌ها</div>
+        <div class="kpi-value">7,067</div>
+        <div class="kpi-foot">Inside SLA <b>83.7٪</b> • زیر ۲ دقیقه <b>46.6٪</b></div>
+      </div>
+
+      <div class="card kpi">
+        <div class="kpi-title">پروژه تماس (Outbound)</div>
+        <div class="kpi-value">12,008</div>
+        <div class="kpi-foot">پیگیری فعال تجربه مشتری</div>
+      </div>
+    </div>
+
+    <!-- Exec Trend (One Glance) -->
+    <section class="card section">
+      <div class="section-head">
+        <h2>روند کیفیت پاسخگویی (یک نگاه)</h2>
+        <div class="sub">آذر + میانگین ۳ ماه اخیر + تغییر نسبت به ۳ ماه قبل</div>
+      </div>
+
+      <div class="grid-3 mt" style="padding: 0 14px 14px;">
+        <div class="pill">
+          <div class="chips" style="justify-content:flex-start; margin-top:0;">
+            <span class="chip bad">Δ ↓ 3.3٪</span>
+          </div>
+          <div class="pill-title">Lost Rate</div>
+          <div class="pill-value" style="font-size:34px; margin-top:6px;">8.0٪</div>
+          <div class="pill-text">میانگین ۳ ماه اخیر: <b>6.3٪</b> • ۳ ماه قبل: <b>9.7٪</b></div>
+        </div>
+
+        <div class="pill">
+          <div class="chips" style="justify-content:flex-start; margin-top:0;">
+            <span class="chip good">Δ ↑ 3.3٪</span>
+          </div>
+          <div class="pill-title">Answer Rate</div>
+          <div class="pill-value" style="font-size:34px; margin-top:6px;">92.0٪</div>
+          <div class="pill-text">میانگین ۳ ماه اخیر: <b>93.7٪</b> • ۳ ماه قبل: <b>90.3٪</b></div>
+        </div>
+
+        <div class="pill">
+          <div class="chips" style="justify-content:flex-start; margin-top:0;">
+            <span class="chip good">Δ ↑ 7.9٪</span>
+          </div>
+          <div class="pill-title">SLA تماس (≤ 20s)</div>
+          <div class="pill-value" style="font-size:34px; margin-top:6px;">76.5٪</div>
+          <div class="pill-text">میانگین ۳ ماه اخیر: <b>78.0٪</b> • ۳ ماه قبل: <b>70.1٪</b></div>
+        </div>
+      </div>
+
+      <div class="note">نکته: این بخش صرفاً برای نمایش سریع روند به مدیریت طراحی شده و جایگزین جدول‌های جزئیات شیفت/روز نیست.</div>
+    </section>
+
+    <!-- CS Inbound Table -->
+    <section class="card section">
+      <div class="section-head">
+        <h2>عملکرد تماس‌های ورودی — خدمات مشتریان</h2>
+        <div class="sub">تفکیک شیفت + جمع کل</div>
+      </div>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>شیفت</th>
+              <th>Offered</th>
+              <th>Answered</th>
+              <th>Abandoned</th>
+              <th>Missed</th>
+              <th>Lost</th>
+              <th>Answer Rate</th>
+              <th>Abandon Rate</th>
+              <th>ASA (ثانیه)</th>
+              <th>AHT (ثانیه)</th>
+              <th>SLA ≤ 20s</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>۰۸:۰۰–۱۶:۰۰</td>
+              <td>10,701</td>
+              <td>10,321</td>
+              <td>220</td>
+              <td>160</td>
+              <td>380</td>
+              <td>96.4٪</td>
+              <td>2.1٪</td>
+              <td>15.4</td>
+              <td>66.1</td>
+              <td>86.6٪</td>
+            </tr>
+            <tr>
+              <td>۱۶:۰۰–۲۴:۰۰</td>
+              <td>21,865</td>
+              <td>19,474</td>
+              <td>1,959</td>
+              <td>432</td>
+              <td>2,391</td>
+              <td>89.1٪</td>
+              <td>9.0٪</td>
+              <td>33.9</td>
+              <td>62.1</td>
+              <td>69.7٪</td>
+            </tr>
+            <tr>
+              <td><b>جمع کل</b></td>
+              <td><b>32,566</b></td>
+              <td><b>29,795</b></td>
+              <td><b>2,179</b></td>
+              <td><b>592</b></td>
+              <td><b>2,771</b></td>
+              <td><b>91.5٪</b></td>
+              <td><b>6.7٪</b></td>
+              <td><b>27.5</b></td>
+              <td><b>63.5</b></td>
+              <td><b>75.6٪</b></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="note">SLA تماس فقط برای تماس‌های پاسخ‌داده‌شده و بر اساس Wait Time ≤ 20 ثانیه محاسبه شده است.</div>
+    </section>
+
+    <!-- Vendors Inbound Table -->
+    <section class="card section">
+      <div class="section-head">
+        <h2>عملکرد تماس‌های ورودی — مجموعه‌ها</h2>
+        <div class="sub">تفکیک شیفت + جمع کل</div>
+      </div>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>شیفت</th>
+              <th>Offered</th>
+              <th>Answered</th>
+              <th>Abandoned</th>
+              <th>Missed</th>
+              <th>Lost</th>
+              <th>Answer Rate</th>
+              <th>Abandon Rate</th>
+              <th>ASA (ثانیه)</th>
+              <th>AHT (ثانیه)</th>
+              <th>SLA ≤ 20s</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>۰۸:۰۰–۱۶:۰۰</td>
+              <td>1,511</td>
+              <td>1,422</td>
+              <td>1</td>
+              <td>88</td>
+              <td>89</td>
+              <td>94.1٪</td>
+              <td>0.1٪</td>
+              <td>14.7</td>
+              <td>122.2</td>
+              <td>80.7٪</td>
+            </tr>
+            <tr>
+              <td>۱۶:۰۰–۲۴:۰۰</td>
+              <td>2,498</td>
+              <td>2,423</td>
+              <td>3</td>
+              <td>72</td>
+              <td>75</td>
+              <td>97.0٪</td>
+              <td>0.1٪</td>
+              <td>12.0</td>
+              <td>98.2</td>
+              <td>85.6٪</td>
+            </tr>
+            <tr>
+              <td><b>جمع کل</b></td>
+              <td><b>4,009</b></td>
+              <td><b>3,845</b></td>
+              <td><b>4</b></td>
+              <td><b>160</b></td>
+              <td><b>164</b></td>
+              <td><b>95.9٪</b></td>
+              <td><b>0.1٪</b></td>
+              <td><b>12.9</b></td>
+              <td><b>110.0</b></td>
+              <td><b>83.8٪</b></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="note">Lost در مجموعه‌ها عمدتاً از Missed تشکیل می‌شود و Abandoned بسیار محدود است.</div>
+    </section>
+
+    <!-- Tickets Section -->
+    <section class="card section">
+      <div class="section-head">
+        <h2>عملکرد تیکت‌های مشتریان — آذر ۱۴۰۴</h2>
+        <div class="sub">خلاصه وضعیت پاسخگویی بر اساس SLA زیر ۸ دقیقه</div>
+      </div>
+      <div class="grid-3 mt" style="padding: 0 14px 14px;">
+        <div class="pill">
+          <div class="pill-title">Inside SLA (زیر ۸ دقیقه)</div>
+          <div class="pill-value" style="font-size:28px;">5,912 (83.7٪)</div>
+          <div class="pill-text">کیفیت پاسخگویی در SLA حفظ شده است.</div>
+        </div>
+        <div class="pill">
+          <div class="pill-title">Outside SLA</div>
+          <div class="pill-value" style="font-size:28px;">1,155 (16.3٪)</div>
+          <div class="pill-text">نیازمند تمرکز در ساعات پرترافیک.</div>
+        </div>
+        <div class="pill">
+          <div class="pill-title">پاسخ زیر ۲ دقیقه</div>
+          <div class="pill-value" style="font-size:28px;">3,291 (46.6٪)</div>
+          <div class="pill-text">ریتم پاسخگویی سریع قابل قبول است.</div>
+        </div>
+      </div>
+      <div class="grid-2" style="padding: 0 14px 14px;">
+        <div class="pill soft">
+          <div class="pill-title">بعد از ۱۲ شب</div>
+          <div class="pill-value" style="font-size:24px;">244 (3.5٪)</div>
+          <div class="pill-text">برای تصمیم‌گیری پوشش شیفت شب قابل بررسی است.</div>
+        </div>
+        <div class="pill soft">
+          <div class="pill-title">رفت‌وبرگشت</div>
+          <div class="pill-value" style="font-size:24px;">429 (6.1٪)</div>
+          <div class="pill-text">می‌تواند شاخص اصلاح فرآیند/کیفیت باشد.</div>
+        </div>
+      </div>
+      <div class="note">SLA تیکت بر اساس «زمان پاسخ‌گویی» و آستانه ۸ دقیقه گزارش شده است.</div>
+    </section>
+
+    <!-- Project Calls Section -->
+    <section class="card section">
+      <div class="section-head">
+        <h2>پروژه تماس — پیگیری فعال تجربه مشتری (Outbound)</h2>
+        <div class="sub">آذر ۱۴۰۴ — اجرای ساختارمند تماس‌های خروجی</div>
+      </div>
+
+      <div class="grid-2 mt" style="padding: 0 14px 14px;">
+        <div class="pill">
+          <div class="pill-title">فاز مقیاس — آذر ۱۴۰۴</div>
+          <div class="pill-value" style="font-size:30px;">Total: 12,008</div>
+          <div class="pill-text">
+            تاخیر سفارش: <b>9,904</b> • مشتری جدید: <b>1,899</b> • NPS: <b>205</b>
+          </div>
+        </div>
+        <div class="pill">
+          <div class="pill-title">فاز شروع — آبان ۱۴۰۴</div>
+          <div class="pill-value" style="font-size:30px;">Total: 5,663</div>
+          <div class="pill-text">
+            تاخیر سفارش: <b>4,286</b> • NPS: <b>893</b> • مشتری جدید: <b>484</b>
+          </div>
+        </div>
+      </div>
+
+      <div class="note">هدف: پیگیری فعال سفارش‌های با تاخیر، تماس با مشتریان جدید و نظرسنجی NPS برای مدیریت تجربه مشتری.</div>
+    </section>
+
+    <!-- Management Summary (FINAL - appended at end) -->
+    <section class="card section">
+      <div class="section-head">
+        <h2>جمع‌بندی مدیریتی — آذر ۱۴۰۴</h2>
+        <div class="sub">خلاصه برای ارائه به مدیریت</div>
+      </div>
+      <div class="note" style="padding-top:14px;">
+        در آذرماه ۱۴۰۴، حجم تماس‌های ورودی مرکز تماس زودکس با رشد <b>۲۴٪</b> نسبت به آبان (افزایش بیش از <b>۷ هزار</b> تماس) مواجه بوده است.
+        این افزایش عمدتاً ناشی از جشنواره‌های پیش‌رو، شروع فصل زمستان و مشکلات آب‌وهوا بوده و مشتریان برای پیگیری سفارش‌ها تماس بیشتری برقرار کرده‌اند.
+        <br/><br/>
+        با وجود این افزایش قابل توجه در بار ورودی، شاخص‌های کلیدی عملکرد از جمله <b>Answer Rate</b> و <b>SLA</b> پاسخ‌گویی در سطح قابل قبول و نزدیک به ماه قبل حفظ شده‌اند؛
+        موضوعی که نشان‌دهنده توان عملیاتی و کنترل فشار کاری توسط تیم مرکز تماس است.
+        <br/><br/>
+        همچنین در راستای جلب رضایت مشتریان و اطلاع مدیریت محترم، بخش «پروژه تماس» به‌صورت سازمان‌یافته در گزارش این ماه گنجانده شده است
+        که شامل تماس با مشتریان جدید، پیگیری مشتریانی که سفارش آن‌ها با تاخیر به دستشان رسیده و تماس‌های نظرسنجی NPS است.
+        مجموعاً بیش از <b>۱۲,۰۰۸</b> تماس خروجی توسط همکاران خدمات مشتریان انجام شده که از نظر حجم و اثرگذاری قابل ملاحظه است.
+        <br/><br/>
+        <b>خلاصه اعداد کلیدی آذر:</b><br/>
+        • <b>36,575</b> تماس ورودی ثبت شده است.<br/>
+        • <b>Answer Rate: 92.0٪</b> بوده است.<br/>
+        • <b>75.6٪</b> تماس‌ها زیر <b>۲۰ ثانیه</b> پاسخ داده شده‌اند (SLA تماس).<br/>
+        • <b>7,067</b> تیکت ثبت شده است.<br/>
+        • <b>83.7٪</b> تیکت‌ها داخل SLA (زیر ۸ دقیقه) پاسخ داده شده‌اند.<br/>
+        • <b>46.6٪</b> تیکت‌ها زیر ۲ دقیقه پاسخ داده شده‌اند.<br/>
+        <br/>
+        در مجموع، عملکرد آذرماه نشان‌دهنده پایداری کیفیت خدمات در شرایط افزایش حجم، بلوغ فرآیندهای پاسخ‌گویی و حرکت به‌سمت مدیریت فعال تجربه مشتری است.
+      </div>
+    </section>
+
+    <div class="footer">گزارش تحلیلی مرکز تماس زودکس — نسخه HTML قابل تبدیل به PDF</div>
+  </div>
+</body>
+</html>
